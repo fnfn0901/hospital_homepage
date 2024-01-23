@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>reservation</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            .reservation-form {
+                margin-top: 20px;
+            }
+            .reservation-form label {
+                font-size: 18px;
+                font-weight: bold;
+                display: block;
+                margin-bottom: 10px;
+            }
+            .reservation-form input[type="text"],
+            .reservation-form input[type="datetime-local"],
+            .reservation-form textarea {
+                width: 100%;
+                padding: 10px;
+                font-size: 16px;
+            }
+            .reservation-form button {
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: green;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+            .reservation-message {
+                margin-top: 20px;
+                font-size: 16px;
+                font-weight: bold;
+            }
+        </style>
+        <script>
+            function reservation() {
+                var name = document.getElementById("name").value;
+                var datetime = document.getElementById("datetime").value;
+                var message = document.getElementById("message").value;
+                
+                var day = new Date(datetime).getDay();
+                var hour = new Date(datetime).getHours();
+                var minute = new Date(datetime).getMinutes();
+                
+                var rsrvOk = true;
+                
+                if ( day === 0 || day === 6) {
+                    if (hour < 8 || (hour === 13 && minute > 50)) {
+                        rsrvOk = false;
+                    }
+                } else {
+                    if ((hour < 8 || (hour === 12 && minute > 20)) || (hour === 13 && minute < 30) || hour > 18) {
+                        rsrvOk = false;
+                    }
+                }
+                if (!rsrvOk) {
+                    alert("예약이 불가능한 시간입니다.");
+                    return false;
+                }
+                if (minute % 10 !== 0) {
+                    alert("예약은 10분 단위로만 가능합니다.");
+                    return false;
+                }
+                var reservationInfo = "예약자명: " + name + "\n"
+                    + "예약 일정: " + datetime + "\n"
+                    + "남기실 말: " + message;
+                
+                alert(reservationInfo);
+                return true;
+            }
+        </script>
+    </head>
+    <body>
+        <h1><a href="home.html"><img src="logo.png" alt="로고">대전 류마내과</a></h1>
+        <h3>
+            <a href="introduce.html">병원 소개</a>
+            <a href="guide.html">진료 안내</a>
+            <a href="field.html">진료 과목</a>
+            <a href="reservation.html">진료 예약</a>
+            <a href="community.html">커뮤니티</a>
+            <a href="navigate.html">오시는 길</a>
+        </h3>
+        <div class="content">
+            <h2>진료 예약</h2>
+            
+            <div class="reservation-form">
+                <form onsubmit="return reservation()">
+                    <label for="name">예약자명</label>
+                    <input type="text" id="name" required>
+                    <br><br>
+                    <label for="datetime">예약 일정 (10분 단위로 진료 시간에 맞게 선택해주세요.)</label>
+                    <input type="datetime-local" id="datetime" step="600" required>
+                    <br><br>
+                    <label for="message">남기실 말</label>
+                    <textarea id="message"></textarea>
+                    <br><br>
+                    <button type="submit">예약</button>
+                </form>
+            </div>
+            
+            <div class="reservation-message">
+            </div>
+        </div>
+    </body>
+</html>

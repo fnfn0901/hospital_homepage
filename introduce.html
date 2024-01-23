@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>introduce</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            .image-container {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+            .image-container li{
+                font-size: 20px;
+            }
+            .image-container img {
+                width: 30%;
+            }
+            .image-caption {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .image-caption span {
+                padding-left: 6%;
+                padding-bottom: 7%;
+                font-size: 30px;
+                font-weight: 600;
+            }
+            table {
+                width: 80%;
+                table-layout: fixed;
+                border-collapse: collapse;
+                padding: 10%;
+                text-align: center;
+                border: 3px solid;
+            }
+            .image-cell {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                border: 3px solid;
+            }
+            .text-cell {
+                border: 3px solid;
+                width: 20%;
+                height: 50px;
+                cursor: pointer;
+            }
+        </style>
+        <script>
+            function changeImageSource(src) {
+                var image = document.getElementById('image');
+                image.src = src;
+            }
+        </script>
+    </head>
+    <body>
+        <h1><a href="home.html"><img src="logo.png" alt="로고">대전 류마내과</a></h1>
+        <h3>
+            <a href="introduce.html">병원 소개</a>
+            <a href="guide.html">진료 안내</a>
+            <a href="field.html">진료 과목</a>
+            <a href="reservation.html">진료 예약</a>
+            <a href="community.html">커뮤니티</a>
+            <a href="navigate.html">오시는 길</a>
+        </h3>
+        <div class="content">
+            <h2>병원 소개</h2>
+            <h4>원장 약력</h4>
+            <div class="image-container">
+                <img src="doctor.png" alt="원장 선생님 사진">
+                <div class="image-caption">
+                    <span>신동우 원장</span>
+                    <ul>
+                        <li>서울대학교병원 류마티스내과 전임의 및 임상강사</li>
+                        <li>분당서울대학교병원 관절센터 전임의 및 임상강사</li>
+                        <li>내과전문의 / 류마티스 전문의</li>
+                        <li>노인병 인정의 / 위장내시경 인정의</li>
+                        <li>척추 추나요법 마스터과정 수료 / 척추 발란스 심화과정 수료</li>
+                        <li>구개천골요법 전문과정 수료 / 동의학연구소 침술과정 수료</li>
+                    </ul> 
+                </div>
+            </div>
+            <br>
+            <h4>병원 둘러보기</h4>
+            <table>
+                <tr>
+                    <td class="text-cell" onclick="changeImageSource('1.jpg')">접수 데스크</td>
+                    <td rowspan="5" class="image-cell"><img id="image" src="1.jpg" alt=""></td>
+                </tr>
+                <tr>
+                    <td class="text-cell" onclick="changeImageSource('2.jpg')">대기실</td>
+                </tr>
+                <tr>
+                    <td class="text-cell" onclick="changeImageSource('3.jpg')">진료실</td>
+                </tr>
+                <tr>
+                    <td class="text-cell" onclick="changeImageSource('4.jpg')">물리치료실</td>
+                </tr>
+                <tr>
+                    <td class="text-cell" onclick="changeImageSource('5.jpg')">안정실</td>
+                </tr>
+            </table>
+        </div>
+        <br><br>
+    </body>
+</html>
